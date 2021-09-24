@@ -1,0 +1,74 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: speech-to-text-code-pattern-git
+  namespace: yuhan-lin-app
+  uid: 531793fa-6b6b-4691-8335-05bb1c302788
+  resourceVersion: '10631849'
+  creationTimestamp: '2021-09-24T05:47:44Z'
+  labels:
+    app: speech-to-text-code-pattern-git
+    app.kubernetes.io/component: speech-to-text-code-pattern-git
+    app.kubernetes.io/instance: speech-to-text-code-pattern-git
+    app.kubernetes.io/name: nodejs
+    app.kubernetes.io/part-of: checkride-app
+    app.openshift.io/runtime: nodejs
+    app.openshift.io/runtime-version: 14-ubi7
+  annotations:
+    openshift.io/host.generated: 'true'
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2021-09-24T05:47:44Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:app.kubernetes.io/component': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/name': {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime': {}
+            'f:app.openshift.io/runtime-version': {}
+        'f:spec':
+          'f:port':
+            .: {}
+            'f:targetPort': {}
+          'f:to':
+            'f:kind': {}
+            'f:name': {}
+            'f:weight': {}
+          'f:wildcardPolicy': {}
+    - manager: openshift-router
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2021-09-24T05:47:44Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:ingress': {}
+spec:
+  host: >-
+    speech-to-text-code-pattern-git-yuhan-lin-app.ibmcloud-roks-zmiopc20-6ccd7f378ae819553d37d5f2ee142bd6-0000.jp-tok.containers.appdomain.cloud
+  to:
+    kind: Service
+    name: speech-to-text-code-pattern-git
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  wildcardPolicy: None
+status:
+  ingress:
+    - host: >-
+        speech-to-text-code-pattern-git-yuhan-lin-app.ibmcloud-roks-zmiopc20-6ccd7f378ae819553d37d5f2ee142bd6-0000.jp-tok.containers.appdomain.cloud
+      routerName: default
+      conditions:
+        - type: Admitted
+          status: 'True'
+          lastTransitionTime: '2021-09-24T05:47:44Z'
+      wildcardPolicy: None
+      routerCanonicalHostname: >-
+        ibmcloud-roks-zmiopc20-6ccd7f378ae819553d37d5f2ee142bd6-0000.jp-tok.containers.appdomain.cloud
