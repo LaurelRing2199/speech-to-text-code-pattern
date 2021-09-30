@@ -4,58 +4,10 @@ metadata:
   annotations:
     app.openshift.io/vcs-ref: checkride
     app.openshift.io/vcs-uri: 'https://github.com/LaurelRing2199/speech-to-text-code-pattern.git'
-    openshift.io/generated-by: OpenShiftWebConsole
-  selfLink: /api/v1/namespaces/yuhan-lin-app/services/speech-to-text-code-pattern-git
-  resourceVersion: '10631820'
-  name: speech-to-text-code-pattern-git
-  uid: aff79ec1-b677-490f-929c-6becc03f1111
-  creationTimestamp: '2021-09-24T05:47:44Z'
-  managedFields:
-    - manager: Mozilla
-      operation: Update
-      apiVersion: v1
-      time: '2021-09-24T05:47:44Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:metadata':
-          'f:annotations':
-            .: {}
-            'f:app.openshift.io/vcs-ref': {}
-            'f:app.openshift.io/vcs-uri': {}
-            'f:openshift.io/generated-by': {}
-          'f:labels':
-            .: {}
-            'f:app': {}
-            'f:app.kubernetes.io/component': {}
-            'f:app.kubernetes.io/instance': {}
-            'f:app.kubernetes.io/name': {}
-            'f:app.kubernetes.io/part-of': {}
-            'f:app.openshift.io/runtime': {}
-            'f:app.openshift.io/runtime-version': {}
-        'f:spec':
-          'f:ports':
-            .: {}
-            'k:{"port":8080,"protocol":"TCP"}':
-              .: {}
-              'f:name': {}
-              'f:port': {}
-              'f:protocol': {}
-              'f:targetPort': {}
-          'f:selector':
-            .: {}
-            'f:app': {}
-            'f:deploymentconfig': {}
-          'f:sessionAffinity': {}
-          'f:type': {}
-  namespace: yuhan-lin-app
+  name: checkride-app
+  namespace: yuhan-lin-test
   labels:
-    app: speech-to-text-code-pattern-git
-    app.kubernetes.io/component: speech-to-text-code-pattern-git
-    app.kubernetes.io/instance: speech-to-text-code-pattern-git
-    app.kubernetes.io/name: nodejs
-    app.kubernetes.io/part-of: checkride-app
-    app.openshift.io/runtime: nodejs
-    app.openshift.io/runtime-version: 14-ubi7
+    app: checkride-app
 spec:
   ports:
     - name: 8080-tcp
@@ -63,12 +15,7 @@ spec:
       port: 8080
       targetPort: 8080
   selector:
-    app: speech-to-text-code-pattern-git
-    deploymentconfig: speech-to-text-code-pattern-git
-  clusterIP: 172.21.170.132
-  clusterIPs:
-    - 172.21.170.132
-  type: ClusterIP
+    app: checkride-app
+    deploymentconfig: checkride-app
   sessionAffinity: None
-status:
-  loadBalancer: {}
+  type: ClusterIP

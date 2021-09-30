@@ -2,24 +2,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: checkride-app
-  namespace: yuhan-lin-app
-  selfLink: /api/v1/namespaces/yuhan-lin-app/configmaps/checkride-app
-  uid: 78a6d4b8-8c07-428f-a057-89cab573260d
-  resourceVersion: '10645940'
-  creationTimestamp: '2021-09-24T06:01:52Z'
-  managedFields:
-    - manager: Mozilla
-      operation: Update
-      apiVersion: v1
-      time: '2021-09-24T06:01:52Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:data':
-          .: {}
-          'f:PORT': {}
-          'f:SPEECH_TO_TEXT_APIKEY': {}
-          'f:SPEECH_TO_TEXT_AUTH_TYPE': {}
-          'f:SPEECH_TO_TEXT_URL': {}
+  namespace: yuhan-lin-test
 data:
   PORT: '8080'
   SPEECH_TO_TEXT_APIKEY: 9DFHIiGXXgS7B9DWKsZ3RmuFj3k95h7RKMOIxS1BcaCl
