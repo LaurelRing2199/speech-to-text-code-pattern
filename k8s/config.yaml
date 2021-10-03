@@ -5,6 +5,7 @@ metadata:
   namespace: yuhan-lin-test
 data:
   PORT: '8080'
+  TEST: ABC
   SPEECH_TO_TEXT_APIKEY: 9DFHIiGXXgS7B9DWKsZ3RmuFj3k95h7RKMOIxS1BcaCl
   SPEECH_TO_TEXT_AUTH_TYPE: iam
   SPEECH_TO_TEXT_URL: >-
