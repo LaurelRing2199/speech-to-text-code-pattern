@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  generateName: checkride-app-pipeline-run-
+spec:
+  serviceAccountNames:
+    - serviceAccountName: build-bot
+      taskName: build-image
+  pipelineRef:
+    name: checkride-app-pipeline
+  workspaces:
+    - name: pipeline-shared-data
+      persistentVolumeClaim:
+        claimName: checkride-app-pvc
