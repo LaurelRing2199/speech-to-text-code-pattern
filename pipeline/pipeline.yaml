@@ -37,6 +37,8 @@ spec:
         - name: ARGS
           value:
             - clean-install
+        - name: IMAGE
+          value: "docker.io/laurelring/npm-test-puppeteer:01@sha256:645818db5a5ff9ac797d75cae26ad0fcdc3328275794f6ee7c73229b20d7a625"
       runAfter:
         - clone-repository
     - name: run-tests
