@@ -44,7 +44,7 @@ spec:
         - build-image
       params:
         - name: git_url
-          value: https://github.com/LaurelRing2199/speech-to-text-code-pattern.git
+          value: github.com/LaurelRing2199/speech-to-text-code-pattern
         - name: git_email
           value: yuhanlin1994@outlook.com
         - name: git_name

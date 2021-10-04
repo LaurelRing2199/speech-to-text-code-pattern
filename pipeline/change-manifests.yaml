@@ -41,7 +41,7 @@ spec:
           set -eu
           git config --global user.email "$(params.git_email)"
           git config --global user.name "$(params.git_name)"
-          git clone --branch master --depth 1 http://${GIT_USERNAME}:${GIT_PASSWORD}@$(params.git_url) repo
+          git clone http://${GIT_USERNAME}:${GIT_PASSWORD}@$(params.git_url) repo
           git checkout ${params.branch}
           cd "repo/$(params.git_manifest_dir)"
           ls -l
