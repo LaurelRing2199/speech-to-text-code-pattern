@@ -43,7 +43,7 @@ spec:
           git config --global user.name "$(params.git_name)"
           git clone http://${GIT_USERNAME}:${GIT_PASSWORD}@$(params.git_url) repo
           cd repo
-          git checkout ${params.branch}
+          git checkout "$(params.branch)"
           cd "$(params.git_manifest_dir)"
           ls -l
           echo old value:
