@@ -50,7 +50,7 @@ spec:
           value:
             - test
         - name: IMAGE
-          value: "docker.io/library/node:14.18-alpine@sha256:96bbc87132d5d6b3d8b5cad758ebae5d30bd75bbd8cdc5cd756fb6b0d500f153"
+          value: "docker.io/library/node:16.9.1-alpine@sha256:aca897c4ab3de699aa6c5dbf81424de3dfd15f226b7de86b1d30559ccd5d2644"
       runAfter:
         - install-dependencies
     - name: build-image
