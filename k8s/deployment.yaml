@@ -3,7 +3,7 @@ apiVersion: apps/v1
 metadata:
   annotations:
     app.openshift.io/vcs-ref: checkride
-    app.openshift.io/vcs-uri: 'https://github.com/LaurelRing2199/speech-to-text-code-pattern.git'
+    app.openshift.io/vcs-uri: https://github.com/LaurelRing2199/speech-to-text-code-pattern.git
   name: checkride-app
   namespace: yuhan-lin-test
   labels:
@@ -21,36 +21,36 @@ spec:
         deploymentconfig: checkride-app
     spec:
       containers:
-        - name: checkride-app
-          image: docker.io/laurelring/checkride
-          ports:
-            - containerPort: 8080
-              protocol: TCP
-          env:
-            - name: SPEECH_TO_TEXT_AUTH_TYPE
-              valueFrom:
-                configMapKeyRef:
-                  name: checkride-app
-                  key: SPEECH_TO_TEXT_AUTH_TYPE
-            - name: SPEECH_TO_TEXT_APIKEY
-              valueFrom:
-                configMapKeyRef:
-                  name: checkride-app
-                  key: SPEECH_TO_TEXT_APIKEY
-            - name: SPEECH_TO_TEXT_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: checkride-app
-                  key: SPEECH_TO_TEXT_URL
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: checkride-app
-                  key: PORT
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          imagePullPolicy: Always
+      - name: checkride-app
+        image: docker.io/laurelring/checkride:edbf29f26b169f7d84a11275c34fe1c26c2604bb
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        env:
+        - name: SPEECH_TO_TEXT_AUTH_TYPE
+          valueFrom:
+            configMapKeyRef:
+              name: checkride-app
+              key: SPEECH_TO_TEXT_AUTH_TYPE
+        - name: SPEECH_TO_TEXT_APIKEY
+          valueFrom:
+            configMapKeyRef:
+              name: checkride-app
+              key: SPEECH_TO_TEXT_APIKEY
+        - name: SPEECH_TO_TEXT_URL
+          valueFrom:
+            configMapKeyRef:
+              name: checkride-app
+              key: SPEECH_TO_TEXT_URL
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: checkride-app
+              key: PORT
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        imagePullPolicy: Always
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
