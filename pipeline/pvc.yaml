@@ -4,7 +4,7 @@ metadata:
   annotations:
     volume.beta.kubernetes.io/storage-provisioner: ibm.io/ibmc-block
   name: checkride-app-pvc
-  namespace: yuhan-lin-test
+  namespace: yuhan-lin-dev
 spec:
   accessModes:
     - ReadWriteOnce
