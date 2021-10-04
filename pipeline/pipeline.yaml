@@ -49,6 +49,8 @@ spec:
         - name: ARGS
           value:
             - test
+        - name: IMAGE
+          value: "docker.io/library/node:14.18-alpine@sha256:b17a44a86c73caadd9a52d5e8e4cc52713c7bc6b249906138861fdd9350c5678"
       runAfter:
         - install-dependencies
     - name: build-image
