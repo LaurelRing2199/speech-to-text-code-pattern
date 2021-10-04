@@ -50,7 +50,7 @@ spec:
           value:
             - test
         - name: IMAGE
-          value: "docker.io/library/node:16.9.1-alpine@sha256:aca897c4ab3de699aa6c5dbf81424de3dfd15f226b7de86b1d30559ccd5d2644"
+          value: "docker.io/laurelring/npm-test-puppeteer:01@sha256:645818db5a5ff9ac797d75cae26ad0fcdc3328275794f6ee7c73229b20d7a625"
       runAfter:
         - install-dependencies
     - name: build-image
