@@ -67,8 +67,18 @@ spec:
       runAfter:
         - build-image
       params:
-        - name: image-with-tag
+        - name: git_url
+          value: https://github.com/LaurelRing2199/speech-to-text-code-pattern.git
+        - name: git_email
+          value: yuhanlin1994@outlook.com
+        - name: git_name
+          value: LaurelRing2199
+        - name: git_manifest_dir
+          value: k8s
+        - name: image_tag
           value: "$(params.image-repo):$(tasks.clone-repository.results.commit)"
+        - name: branch
+          value: checkride
       taskRef:
         kind: Task
         name: change-manifests
