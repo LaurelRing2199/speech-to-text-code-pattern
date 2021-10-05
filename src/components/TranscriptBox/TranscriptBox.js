@@ -147,7 +147,7 @@ export const TranscriptBox = ({ keywordInfo, transcriptArray }) => {
           }
           return (
             <div>
-              <span>{`${fulltext},${keyword}`}</span>
+              <span>{`${searchresult}`}</span>
             </div>
           );
         })}
