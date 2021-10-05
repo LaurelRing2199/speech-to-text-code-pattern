@@ -127,40 +127,23 @@ export const TranscriptBox = ({ keywordInfo, transcriptArray }) => {
   }else if(keywordInfo.length > 0){
     return (
       <div className="transcript-box">
-        {transcriptArray.map((transcriptItem, overallIndex) => {
-          const { speaker, text } = transcriptItem;
-          const parsedTextElements = mapTranscriptTextToElements(
-            text,
-            keywordInfo,
-            overallIndex,
-          );
-
+        {keywordInfo.map((keyword, keywordIndex) => {
+          var fulltext = ``
+          transcriptArray.forEach(function(transcriptItem, overallIndex) {
+            const { speaker, text } = transcriptItem;
+            fulltext = fulltext + text
+          });
+          if (fulltext.includes(keyword)) {
+            var elementsindex = fulltext.indexOf(keyword);
+            var searchresult = ``;
+            while(elementsindex  !== -1){
+              searchresult =searchresult + `target: ${keyword}, index: ${fulltext.indexOf(keyword)} text: ${fulltext.substring(elementsindex-5, elementsindex+6)}\n`;
+              elementsindex = parsedTextElements.indexOf(keyword,elementsindex + 1);
+            }
+          }
           return (
-            <div key={`transcript-${overallIndex}`}>
-              {speaker !== null && (
-                <span className={`speaker-label--${speaker}`}>
-                  {`Speaker ${speaker}: `}
-                </span>
-              )}
-              {keywordInfo.map((keyword, keywordIndex) => {
-                if (!keyword) {
-                  return null;
-                }
-
-                if (parsedTextElements.includes(keyword)) {
-                  var elementsindex = parsedTextElements.indexOf(keyword);
-                  while(elementsindex  !== -1){
-                    var searchresult =`${keyword}: index: ${parsedTextElements.indexOf(keyword)} text: ${parsedTextElements[elementsindex-5].text},${parsedTextElements[elementsindex-4].text},${parsedTextElements[elementsindex-3].text},${parsedTextElements[elementsindex-2].text},${parsedTextElements[elementsindex-1].text},${parsedTextElements[elementsindex+1].text},${parsedTextElements[elementsindex+2].text},${parsedTextElements[elementsindex+3].text},${parsedTextElements[elementsindex+4].text},${parsedTextElements[elementsindex+5].text}\n`
-                  elementsindex = parsedTextElements.indexOf(keyword,elementsindex + 1);
-                  }
-                  return (
-                    <span
-                      key={`transcript-text-${overallIndex}-${parsedTextElements.indexOf(keyword)}`}
-                    >{`${searchresult}`}</span>
-                  );
-                }
-                return null;
-              })}
+            <div key={`transcript-${keywordIndex}`}>
+              <span>{`${searchresult}`}</span>
             </div>
           );
         })}
