@@ -34,7 +34,7 @@ export const OutputContainer = ({
       />
     </FormGroup>
     <FormGroup legendText="result for keyword search">
-      <SearchBox
+      <TranscriptBox
         keywordInfo={keywordInfo}
         transcriptArray={transcriptArray}
       />
