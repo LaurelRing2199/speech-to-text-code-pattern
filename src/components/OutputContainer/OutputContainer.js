@@ -28,7 +28,7 @@ export const OutputContainer = ({
     </FormGroup>
     <FormGroup legendText="Transcript">
       <TranscriptBox
-        keywordInfo={}
+        keywordInfo={[]}
         transcriptArray={transcriptArray}
       />
     </FormGroup>
