@@ -250,43 +250,6 @@ export const ServiceContainer = () => {
     });
   };
 
-  const onStartPlayingSample = async recognizeConfig => {
-    cleanUpOldStreamIfNecessary();
-
-    const stream = recognizeFile(recognizeConfig);
-    await readAudioFileForVisualization(recognizeConfig.file);
-    dispatch({
-      isSamplePlaying: true,
-      type: actionTypes.setIsSamplePlaying,
-    });
-    dispatch({
-      isUploadPlaying: false,
-      type: actionTypes.setIsUploadPlaying,
-    });
-    dispatch({
-      isRecording: false,
-      type: actionTypes.setIsRecording,
-    });
-    dispatch({
-      audioSource: 'sample',
-      type: actionTypes.setAudioSource,
-    });
-    dispatch({
-      audioStream: stream,
-      type: actionTypes.setAudioStream,
-    });
-
-    onSubmit(stream);
-  };
-
-  const onStopPlayingSample = () => {
-    handleStreamEnd();
-    dispatch({
-      isSamplePlaying: false,
-      type: actionTypes.setIsSamplePlaying,
-    });
-  };
-
   const onStartRecording = async recognizeConfig => {
     cleanUpOldStreamIfNecessary();
 
@@ -347,14 +310,11 @@ export const ServiceContainer = () => {
       )}
       <ControlContainer
         isRecording={state.isRecording}
-        isSamplePlaying={state.isSamplePlaying}
         isUploadPlaying={state.isUploadPlaying}
         onError={onError}
         onSelectNewModel={onSelectNewModel}
         onStartPlayingFileUpload={onStartPlayingFileUpload}
         onStopPlayingFileUpload={onStopPlayingFileUpload}
-        onStartPlayingSample={onStartPlayingSample}
-        onStopPlayingSample={onStopPlayingSample}
         onStartRecording={onStartRecording}
         onStopRecording={onStopRecording}
       />

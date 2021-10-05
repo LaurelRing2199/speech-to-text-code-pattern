@@ -2,19 +2,15 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, FileUploaderButton } from 'carbon-components-react';
 import fetch from 'isomorphic-fetch';
-import models from '../../data/models.json';
 
 export const SubmitContainer = ({
   isRecording,
-  isSamplePlaying,
   isUploadPlaying,
   keywordText,
   modelName,
   onError,
   onStartPlayingFileUpload,
   onStopPlayingFileUpload,
-  onStartPlayingSample,
-  onStopPlayingSample,
   onStartRecording,
   onStopRecording,
   useSpeakerLabels,
@@ -27,9 +23,6 @@ export const SubmitContainer = ({
     }
     setKeywordList(newKeywordList);
   }, [keywordText]);
-
-  const sampleModelInfo = models.find(model => model.name === modelName);
-  const sampleModelFilename = sampleModelInfo ? sampleModelInfo.filename : null;
 
   const getBaseAudioConfig = async () => {
     let authResponse;
@@ -70,14 +63,6 @@ export const SubmitContainer = ({
     return options;
   };
 
-  const getSampleAudioConfig = async () => {
-    const baseConfig = await getBaseAudioConfig();
-    return {
-      ...baseConfig,
-      file: `audio/${sampleModelFilename}`,
-    };
-  };
-
   const getMicrophoneAudioConfig = async () => {
     const baseConfig = await getBaseAudioConfig();
     return {
@@ -97,29 +82,6 @@ export const SubmitContainer = ({
 
   return (
     <div className="submit-container">
-      {isSamplePlaying ? (
-        <Button
-          className="submit-button"
-          kind="tertiary"
-          onClick={onStopPlayingSample}
-        >
-          Stop audio sample
-        </Button>
-      ) : (
-        <Button
-          className="submit-button"
-          disabled={!modelName}
-          kind="tertiary"
-          onClick={async () => {
-            const config = await getSampleAudioConfig();
-            if (!config.error) {
-              onStartPlayingSample(config);
-            }
-          }}
-        >
-          Play audio sample
-        </Button>
-      )}
       {isRecording ? (
         <Button
           className="submit-button"
@@ -174,15 +136,12 @@ export const SubmitContainer = ({
 
 SubmitContainer.propTypes = {
   isRecording: PropTypes.bool,
-  isSamplePlaying: PropTypes.bool,
   isUploadPlaying: PropTypes.bool,
   keywordText: PropTypes.string,
   modelName: PropTypes.string,
   onError: PropTypes.func,
   onStartPlayingFileUpload: PropTypes.func,
   onStopPlayingFileUpload: PropTypes.func,
-  onStartPlayingSample: PropTypes.func,
-  onStopPlayingSample: PropTypes.func,
   onStartRecording: PropTypes.func,
   onStopRecording: PropTypes.func,
   useSpeakerLabels: PropTypes.bool,
@@ -190,15 +149,12 @@ SubmitContainer.propTypes = {
 
 SubmitContainer.defaultProps = {
   isRecording: false,
-  isSamplePlaying: false,
   isUploadPlaying: false,
   keywordText: '',
   modelName: null,
   onError: () => {},
   onStartPlayingFileUpload: () => {},
   onStopPlayingFileUpload: () => {},
-  onStartPlayingSample: () => {},
-  onStopPlayingSample: () => {},
   onStartRecording: () => {},
   onStopRecording: () => {},
   useSpeakerLabels: false,

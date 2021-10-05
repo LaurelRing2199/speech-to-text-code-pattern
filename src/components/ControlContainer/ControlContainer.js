@@ -12,14 +12,11 @@ import models from '../../data/models.json';
 
 export const ControlContainer = ({
   isRecording,
-  isSamplePlaying,
   isUploadPlaying,
   onError,
   onSelectNewModel,
   onStartPlayingFileUpload,
   onStopPlayingFileUpload,
-  onStartPlayingSample,
-  onStopPlayingSample,
   onStartRecording,
   onStopRecording,
 }) => {
@@ -63,42 +60,14 @@ export const ControlContainer = ({
           light
         />
       </FormGroup>
-      <FormGroup legendText="Keywords to spot">
-        <TextArea
-          id="custom-keyword-input"
-          labelText="Custom language keyword input"
-          placeholder="Enter custom language keywords"
-          hideLabel
-          invalidText="Invalid keywords provided"
-          value={keywordText}
-          onChange={evt => {
-            setKeywordText(evt.target.value);
-          }}
-          light
-        />
-      </FormGroup>
-      <FormGroup legendText="Detect multiple speakers (only supported with sample audio)">
-        <ToggleSmall
-          id="speaker-label-toggle"
-          aria-label="Speaker label toggle"
-          disabled={!model || !model.supportsSpeakerLabels}
-          toggled={useSpeakerLabels}
-          onToggle={() => {
-            setUseSpeakerLabels(!useSpeakerLabels);
-          }}
-        />
-      </FormGroup>
       <SubmitContainer
         isRecording={isRecording}
-        isSamplePlaying={isSamplePlaying}
         isUploadPlaying={isUploadPlaying}
         keywordText={keywordText}
         modelName={model && model.id}
         onError={onError}
         onStartPlayingFileUpload={onStartPlayingFileUpload}
         onStopPlayingFileUpload={onStopPlayingFileUpload}
-        onStartPlayingSample={onStartPlayingSample}
-        onStopPlayingSample={onStopPlayingSample}
         onStartRecording={onStartRecording}
         onStopRecording={onStopRecording}
         useSpeakerLabels={useSpeakerLabels}
@@ -109,28 +78,22 @@ export const ControlContainer = ({
 
 ControlContainer.propTypes = {
   isRecording: PropTypes.bool,
-  isSamplePlaying: PropTypes.bool,
   isUploadPlaying: PropTypes.bool,
   onError: PropTypes.func,
   onSelectNewModel: PropTypes.func,
   onStartPlayingFileUpload: PropTypes.func,
   onStopPlayingFileUpload: PropTypes.func,
-  onStartPlayingSample: PropTypes.func,
-  onStopPlayingSample: PropTypes.func,
   onStartRecording: PropTypes.func,
   onStopRecording: PropTypes.func,
 };
 
 ControlContainer.defaultProps = {
   isRecording: false,
-  isSamplePlaying: false,
   isUploadPlaying: false,
   onError: () => {},
   onSelectNewModel: () => {},
   onStartPlayingFileUpload: () => {},
   onStopPlayingFileUpload: () => {},
-  onStartPlayingSample: () => {},
-  onStopPlayingSample: () => {},
   onStartRecording: () => {},
   onStopRecording: () => {},
 };
