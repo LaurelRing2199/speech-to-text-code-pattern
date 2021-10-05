@@ -4,7 +4,6 @@ import { TooltipDefinition } from 'carbon-components-react';
 import KeywordTooltip from '../KeywordTooltip';
 import { createWordRegex } from './utils';
 
-var searchresult = ``;
 const mapTranscriptTextToElements = (text, keywordInfo, totalIndex) => {
   let finalSentenceArray = [];
   let matches = [];
@@ -68,88 +67,61 @@ const mapTranscriptTextToElements = (text, keywordInfo, totalIndex) => {
 };
 
 export const TranscriptBox = ({ keywordInfo, transcriptArray }) => {
+  return (
+    <div className="transcript-box">
+      {transcriptArray.map((transcriptItem, overallIndex) => {
+        const { speaker, text } = transcriptItem;
+        const parsedTextElements = mapTranscriptTextToElements(
+          text,
+          keywordInfo,
+          overallIndex,
+        );
 
-  if (keywordInfo.length <= 0){
-    return (
-      <div className="transcript-box">
-        {transcriptArray.map((transcriptItem, overallIndex) => {
-          const { speaker, text } = transcriptItem;
-          const parsedTextElements = mapTranscriptTextToElements(
-            text,
-            keywordInfo,
-            overallIndex,
-          );
-
-          return (
-            <div key={`transcript-${overallIndex}`}>
-              {speaker !== null && (
-                <span className={`speaker-label--${speaker}`}>
-                  {`Speaker ${speaker}: `}
-                </span>
-              )}
-              {parsedTextElements.map((element, elementIndex) => {
-                if (!element) {
-                  return null;
-                }
-
-                if (element.type === 'normal') {
-                  return (
-                    <span
-                      key={`transcript-text-${overallIndex}-${elementIndex}`}
-                    >{`${element.text}`}</span>
-                  );
-                } else if (element.type === 'keyword') {
-                  return (
-                    <TooltipDefinition
-                      align="center"
-                      direction="top"
-                      key={`transcript-keyword-${overallIndex}-${elementIndex}`}
-                      tooltipText={
-                        <KeywordTooltip
-                          confidence={element.confidence}
-                          startTime={element.startTime}
-                          endTime={element.endTime}
-                        />
-                      }
-                      triggerClassName="keyword-info-trigger"
-                    >
-                      {element.text}
-                    </TooltipDefinition>
-                  );
-                }
-
+        return (
+          <div key={`transcript-${overallIndex}`}>
+            {speaker !== null && (
+              <span className={`speaker-label--${speaker}`}>
+                {`Speaker ${speaker}: `}
+              </span>
+            )}
+            {parsedTextElements.map((element, elementIndex) => {
+              if (!element) {
                 return null;
-              })}
-            </div>
-          );
-        })}
-      </div>
-    );
-  }else if(keywordInfo.length > 0){
-    return (
-      <div className="transcript-box">
-        {keywordInfo.map((keyword, keywordIndex) => {
-          var fulltext = ``
-          transcriptArray.forEach(function(transcriptItem, overallIndex) {
-            const { speaker, text } = transcriptItem;
-            fulltext = fulltext + text
-          });
-          if (fulltext.includes(keyword)) {
-            var elementsindex = fulltext.indexOf(keyword);
-            while(elementsindex  !== -1){
-              searchresult =searchresult + `target: ${keyword}, index: ${fulltext.indexOf(keyword)} text: ${fulltext.substring(elementsindex-5, elementsindex+6)}\n`;
-              elementsindex = fulltext.indexOf(keyword,elementsindex + 1);
-            }
-            return (
-              <div>
-                <span>{`${searchresult}`}</span>
-              </div>
-            );
-          }
-        })}
-      </div>
-    );
-  };
+              }
+
+              if (element.type === 'normal') {
+                return (
+                  <span
+                    key={`transcript-text-${overallIndex}-${elementIndex}`}
+                  >{`${element.text}`}</span>
+                );
+              } else if (element.type === 'keyword') {
+                return (
+                  <TooltipDefinition
+                    align="center"
+                    direction="top"
+                    key={`transcript-keyword-${overallIndex}-${elementIndex}`}
+                    tooltipText={
+                      <KeywordTooltip
+                        confidence={element.confidence}
+                        startTime={element.startTime}
+                        endTime={element.endTime}
+                      />
+                    }
+                    triggerClassName="keyword-info-trigger"
+                  >
+                    {element.text}
+                  </TooltipDefinition>
+                );
+              }
+
+              return null;
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 TranscriptBox.propTypes = {

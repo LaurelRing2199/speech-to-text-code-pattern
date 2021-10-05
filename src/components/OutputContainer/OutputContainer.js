@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FormGroup, Tile } from 'carbon-components-react';
 import AudioWave from '../AudioWave';
 import TranscriptBox from '../TranscriptBox';
+import SearchBox from '../SearchBox';
 
 export const OutputContainer = ({
   audioAnalyzer,
@@ -33,7 +34,7 @@ export const OutputContainer = ({
       />
     </FormGroup>
     <FormGroup legendText="result for keyword search">
-      <TranscriptBox
+      <SearchBox
         keywordInfo={keywordInfo}
         transcriptArray={transcriptArray}
       />
