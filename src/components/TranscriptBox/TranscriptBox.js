@@ -125,7 +125,6 @@ export const TranscriptBox = ({ keywordInfo, transcriptArray }) => {
       </div>
     );
   }else if(keywordInfo.length > 0){
-    var searchresult = ``;
     let allKeywords = [];
     keywordInfo.forEach(sectionKeywords => {
       allKeywords = [...allKeywords, ...Object.keys(sectionKeywords)];
@@ -133,7 +132,8 @@ export const TranscriptBox = ({ keywordInfo, transcriptArray }) => {
     return (
       <div className="transcript-box">
         {allKeywords.map((keyword, keywordIndex) => {
-          var fulltext = ``
+          var fulltext = ``;
+          var searchresult = ``;
           transcriptArray.forEach(function(transcriptItem, overallIndex) {
             const { speaker, text } = transcriptItem;
             fulltext = fulltext + text
@@ -141,7 +141,8 @@ export const TranscriptBox = ({ keywordInfo, transcriptArray }) => {
           if (fulltext.includes(keyword)) {
             var elementsindex = fulltext.indexOf(keyword);
             while(elementsindex  !== -1){
-              searchresult =searchresult + `target: ${keyword}, index: ${fulltext.indexOf(keyword)} text: ${fulltext.substring(elementsindex-5, elementsindex+6)}\n`;
+              searchresult =searchresult + `target: ${keyword}, index: ${fulltext.indexOf(keyword, elementsindex)} text: ${fulltext.substring(elementsindex-5, elementsindex+6)}
+              `;
               elementsindex = fulltext.indexOf(keyword,elementsindex + 1);
             }
           }
