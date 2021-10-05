@@ -28,6 +28,12 @@ export const OutputContainer = ({
     </FormGroup>
     <FormGroup legendText="Transcript">
       <TranscriptBox
+        keywordInfo={}
+        transcriptArray={transcriptArray}
+      />
+    </FormGroup>
+    <FormGroup legendText="result for keyword search">
+      <TranscriptBox
         keywordInfo={keywordInfo}
         transcriptArray={transcriptArray}
       />

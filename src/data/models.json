@@ -5,7 +5,7 @@
     "url": "https://stream.watsonplatform.net/speech-to-text/api/v1/models/ja-JP_BroadbandModel",
     "rate": 16000,
     "filename": "ja-JP_Broadband-sample.wav",
-    "keywords": "音声認識, ディープラーニング, 技術",
+    "keywords": "",
     "supported_features": {
       "custom_language_model": true,
       "speaker_labels": true
@@ -18,7 +18,7 @@
     "url": "https://stream.watsonplatform.net/speech-to-text/api/v1/models/ja-JP_NarrowbandModel",
     "rate": 8000,
     "filename": "ja-JP_Narrowband-sample.wav",
-    "keywords": "ご住所, ご本人, 生年月日",
+    "keywords": "",
     "supported_features": {
       "custom_language_model": true,
       "speaker_labels": true

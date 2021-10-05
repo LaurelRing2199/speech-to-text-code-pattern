@@ -67,61 +67,106 @@ const mapTranscriptTextToElements = (text, keywordInfo, totalIndex) => {
 };
 
 export const TranscriptBox = ({ keywordInfo, transcriptArray }) => {
-  return (
-    <div className="transcript-box">
-      {transcriptArray.map((transcriptItem, overallIndex) => {
-        const { speaker, text } = transcriptItem;
-        const parsedTextElements = mapTranscriptTextToElements(
-          text,
-          keywordInfo,
-          overallIndex,
-        );
 
-        return (
-          <div key={`transcript-${overallIndex}`}>
-            {speaker !== null && (
-              <span className={`speaker-label--${speaker}`}>
-                {`Speaker ${speaker}: `}
-              </span>
-            )}
-            {parsedTextElements.map((element, elementIndex) => {
-              if (!element) {
+  if (keywordInfo.length <= 0){
+    return (
+      <div className="transcript-box">
+        {transcriptArray.map((transcriptItem, overallIndex) => {
+          const { speaker, text } = transcriptItem;
+          const parsedTextElements = mapTranscriptTextToElements(
+            text,
+            keywordInfo,
+            overallIndex,
+          );
+
+          return (
+            <div key={`transcript-${overallIndex}`}>
+              {speaker !== null && (
+                <span className={`speaker-label--${speaker}`}>
+                  {`Speaker ${speaker}: `}
+                </span>
+              )}
+              {parsedTextElements.map((element, elementIndex) => {
+                if (!element) {
+                  return null;
+                }
+
+                if (element.type === 'normal') {
+                  return (
+                    <span
+                      key={`transcript-text-${overallIndex}-${elementIndex}`}
+                    >{`${element.text}`}</span>
+                  );
+                } else if (element.type === 'keyword') {
+                  return (
+                    <TooltipDefinition
+                      align="center"
+                      direction="top"
+                      key={`transcript-keyword-${overallIndex}-${elementIndex}`}
+                      tooltipText={
+                        <KeywordTooltip
+                          confidence={element.confidence}
+                          startTime={element.startTime}
+                          endTime={element.endTime}
+                        />
+                      }
+                      triggerClassName="keyword-info-trigger"
+                    >
+                      {element.text}
+                    </TooltipDefinition>
+                  );
+                }
+
                 return null;
-              }
+              })}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }else if(keywordInfo.length > 0){
+    return (
+      <div className="transcript-box">
+        {transcriptArray.map((transcriptItem, overallIndex) => {
+          const { speaker, text } = transcriptItem;
+          const parsedTextElements = mapTranscriptTextToElements(
+            text,
+            keywordInfo,
+            overallIndex,
+          );
 
-              if (element.type === 'normal') {
-                return (
-                  <span
-                    key={`transcript-text-${overallIndex}-${elementIndex}`}
-                  >{`${element.text}`}</span>
-                );
-              } else if (element.type === 'keyword') {
-                return (
-                  <TooltipDefinition
-                    align="center"
-                    direction="top"
-                    key={`transcript-keyword-${overallIndex}-${elementIndex}`}
-                    tooltipText={
-                      <KeywordTooltip
-                        confidence={element.confidence}
-                        startTime={element.startTime}
-                        endTime={element.endTime}
-                      />
-                    }
-                    triggerClassName="keyword-info-trigger"
-                  >
-                    {element.text}
-                  </TooltipDefinition>
-                );
-              }
+          return (
+            <div key={`transcript-${overallIndex}`}>
+              {speaker !== null && (
+                <span className={`speaker-label--${speaker}`}>
+                  {`Speaker ${speaker}: `}
+                </span>
+              )}
+              {keywordInfo.map((keyword, keywordIndex) => {
+                if (!keyword) {
+                  return null;
+                }
 
-              return null;
-            })}
-          </div>
-        );
-      })}
-    </div>
-  );
+                if (parsedTextElements.includes(keyword)) {
+                  var elementsindex = parsedTextElements.indexOf(keyword);
+                  while(elementsindex  !== -1){
+                    var searchresult =`${keyword}: index: ${parsedTextElements.indexOf(keyword)} text: ${parsedTextElements[elementsindex-5].text},${parsedTextElements[elementsindex-4].text},${parsedTextElements[elementsindex-3].text},${parsedTextElements[elementsindex-2].text},${parsedTextElements[elementsindex-1].text},${parsedTextElements[elementsindex+1].text},${parsedTextElements[elementsindex+2].text},${parsedTextElements[elementsindex+3].text},${parsedTextElements[elementsindex+4].text},${parsedTextElements[elementsindex+5].text}\n`
+                  elementsindex = parsedTextElements.indexOf(keyword,elementsindex + 1);
+                  }
+                  return (
+                    <span
+                      key={`transcript-text-${overallIndex}-${parsedTextElements.indexOf(keyword)}`}
+                    >{`${searchresult}`}</span>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
 };
 
 TranscriptBox.propTypes = {

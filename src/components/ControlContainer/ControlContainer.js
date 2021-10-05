@@ -60,6 +60,20 @@ export const ControlContainer = ({
           light
         />
       </FormGroup>
+      <FormGroup legendText="Keywords to search">
+        <TextArea
+          id="custom-keyword-input"
+          labelText="Custom language keyword input"
+          placeholder="Enter custom language keywords"
+          hideLabel
+          invalidText="Invalid keywords provided"
+          value={keywordText}
+          onChange={evt => {
+            setKeywordText(evt.target.value);
+          }}
+          light
+        />
+      </FormGroup>
       <SubmitContainer
         isRecording={isRecording}
         isUploadPlaying={isUploadPlaying}
