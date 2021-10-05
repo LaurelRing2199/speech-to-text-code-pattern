@@ -4,6 +4,7 @@ import { TooltipDefinition } from 'carbon-components-react';
 import KeywordTooltip from '../KeywordTooltip';
 import { createWordRegex } from './utils';
 
+var searchresult = ``;
 const mapTranscriptTextToElements = (text, keywordInfo, totalIndex) => {
   let finalSentenceArray = [];
   let matches = [];
@@ -135,17 +136,16 @@ export const TranscriptBox = ({ keywordInfo, transcriptArray }) => {
           });
           if (fulltext.includes(keyword)) {
             var elementsindex = fulltext.indexOf(keyword);
-            var searchresult = ``;
             while(elementsindex  !== -1){
               searchresult =searchresult + `target: ${keyword}, index: ${fulltext.indexOf(keyword)} text: ${fulltext.substring(elementsindex-5, elementsindex+6)}\n`;
               elementsindex = fulltext.indexOf(keyword,elementsindex + 1);
             }
+            return (
+              <div>
+                <span>{`${searchresult}`}</span>
+              </div>
+            );
           }
-          return (
-            <div>
-              <span>{`${fulltext}`}</span>
-            </div>
-          );
         })}
       </div>
     );
