@@ -140,12 +140,12 @@ export const TranscriptBox = ({ keywordInfo, transcriptArray }) => {
               searchresult =searchresult + `target: ${keyword}, index: ${fulltext.indexOf(keyword)} text: ${fulltext.substring(elementsindex-5, elementsindex+6)}\n`;
               elementsindex = fulltext.indexOf(keyword,elementsindex + 1);
             }
-            return (
-              <div>
-                <span>{`${fulltext},${keyword}`}</span>
-              </div>
-            );
           }
+          return (
+            <div>
+              <span>{`${fulltext},${keyword}`}</span>
+            </div>
+          );
         })}
       </div>
     );
