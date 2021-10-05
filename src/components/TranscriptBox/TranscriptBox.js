@@ -126,9 +126,13 @@ export const TranscriptBox = ({ keywordInfo, transcriptArray }) => {
     );
   }else if(keywordInfo.length > 0){
     var searchresult = ``;
+    let allKeywords = [];
+    keywordInfo.forEach(sectionKeywords => {
+      allKeywords = [...allKeywords, ...Object.keys(sectionKeywords)];
+    });
     return (
       <div className="transcript-box">
-        {keywordInfo.map((keyword, keywordIndex) => {
+        {allKeywords.map((keyword, keywordIndex) => {
           var fulltext = ``
           transcriptArray.forEach(function(transcriptItem, overallIndex) {
             const { speaker, text } = transcriptItem;
