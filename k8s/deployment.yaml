@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: checkride-app
-        image: docker.io/laurelring/checkride:6bd1a29941f8b09d1d813bf583072317a496a11e
+        image: docker.io/laurelring/checkride:c7c881de9ba090ea94a4190516c7d416ecb2b21b
         ports:
         - containerPort: 8080
           protocol: TCP
