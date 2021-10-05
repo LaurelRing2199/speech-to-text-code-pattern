@@ -138,7 +138,7 @@ export const TranscriptBox = ({ keywordInfo, transcriptArray }) => {
             var searchresult = ``;
             while(elementsindex  !== -1){
               searchresult =searchresult + `target: ${keyword}, index: ${fulltext.indexOf(keyword)} text: ${fulltext.substring(elementsindex-5, elementsindex+6)}\n`;
-              elementsindex = parsedTextElements.indexOf(keyword,elementsindex + 1);
+              elementsindex = fulltext.indexOf(keyword,elementsindex + 1);
             }
           }
           return (
