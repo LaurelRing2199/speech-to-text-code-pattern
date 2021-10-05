@@ -21,12 +21,12 @@ export const SearchBox = ({ keywordInfo, transcriptArray }) => {
           if (fulltext.includes(keyword)) {
             var elementsindex = fulltext.indexOf(keyword);
             while(elementsindex  !== -1){
-              searchresult =searchresult + `target: ${keyword}, index: ${fulltext.indexOf(keyword)} text: ${fulltext.substring(elementsindex-5, elementsindex+6)}\n`;
+              searchresult = searchresult + `target: ${keyword}, index: ${fulltext.indexOf(keyword)} text: ${fulltext.substring(elementsindex-5, elementsindex+6)}\n`;
               elementsindex = fulltext.indexOf(keyword,elementsindex + 1);
             }
             return (
               <div>
-                <span>{`${searchresult}`}</span>
+                <span>{`${fulltext}`}</span>
               </div>
             );
           }
