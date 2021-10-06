@@ -3,7 +3,7 @@ import Header from './components/Header';
 import ServiceContainer from './components/ServiceContainer';
 import useScript from './hooks/useScript';
 
-const HEADER_TITLE = 'Watson Speech to Text Test';
+const HEADER_TITLE = 'Watson Speech to Text Demo';
 const HEADER_DESCRIPTION =
   'Use for checkride';
 
